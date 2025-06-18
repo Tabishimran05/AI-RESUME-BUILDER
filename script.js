@@ -1,62 +1,59 @@
-  function generateResume() {
-  const input = document.getElementById("userInput").value.trim();
+   function generateResume() {
+  const input = document.getElementById("userInput").value;
   const outputDiv = document.getElementById("output");
 
-  if (!input) {
-    outputDiv.innerHTML = "<p class='error'>⚠️ Please enter your information.</p>";
-    return;
-  }
+  // Basic extraction from input
+  const lines = input.split("\n").map(line => line.trim()).filter(line => line);
 
-  const lines = input.split("\n").map(line => line.trim()).filter(line => line !== "");
+  let name = "";
+  let initials = "";
+  let education = "";
+  let experience = "";
+  let age = "";
+  let others = "";
 
-  const nameLine = lines[0];
-  const [firstName, lastName] = nameLine.split(" ");
-  const initials = (firstName?.[0] || "") + (lastName?.[0] || "");
-
-  const sections = {
-    Education: [],
-    Experience: [],
-    Skills: [],
-    Contact: [],
-    Other: []
-  };
-
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.toLowerCase().includes("education")) {
-      sections.Education.push(line);
-    } else if (line.toLowerCase().includes("experience")) {
-      sections.Experience.push(line);
-    } else if (line.toLowerCase().includes("skill")) {
-      sections.Skills.push(line);
-    } else if (line.toLowerCase().includes("email") || line.toLowerCase().includes("phone")) {
-      sections.Contact.push(line);
+  lines.forEach(line => {
+    const lower = line.toLowerCase();
+    if (lower.startsWith("name:")) {
+      name = line.replace(/name:/i, "").trim();
+      const parts = name.split(" ");
+      if (parts.length >= 2) {
+        initials = parts[0][0].toUpperCase() + parts[1][0].toUpperCase();
+      } else {
+        initials = name.slice(0, 2).toUpperCase();
+      }
+    } else if (lower.startsWith("education:")) {
+      education += line.replace(/education:/i, "").trim() + "\n";
+    } else if (lower.startsWith("experience:")) {
+      experience += line.replace(/experience:/i, "").trim() + "\n";
+    } else if (lower.startsWith("age:")) {
+      age += line.replace(/age:/i, "").trim();
     } else {
-      sections.Other.push(line);
+      others += line + "\n";
     }
+  });
+
+  // Build HTML
+  let html = `<div class="resume-card">`;
+  html += `<div class="resume-header">
+             <div class="logo-circle">${initials}</div>
+             <h2>${name}</h2>
+           </div>`;
+
+  if (age) {
+    html += `<h3>Age</h3><p>${age}</p>`;
+  }
+  if (education) {
+    html += `<h3>Education</h3><p>${education.replace(/\n/g, "<br>")}</p>`;
+  }
+  if (experience) {
+    html += `<h3>Experience</h3><p>${experience.replace(/\n/g, "<br>")}</p>`;
+  }
+  if (others) {
+    html += `<h3>Additional Info</h3><p>${others.replace(/\n/g, "<br>")}</p>`;
   }
 
-  const buildSection = (emoji, title, items) =>
-    items.length
-      ? `<div class="section"><h3>${emoji} ${title}</h3><div class="section-content"><br>${items.map(item => `<p>${item}</p>`).join("")}</div></div>`
-      : "";
+  html += `</div>`;
 
-  const formattedResume = `
-    <div class="resume-card">
-      <div class="resume-header">
-        <div class="logo-circle">${initials.toUpperCase()}</div>
-        <h2>${nameLine}</h2>
-      </div>
-      <hr />
-      <div class="resume-body">
-        ${buildSection("🎓", "Education", sections.Education)}
-        ${buildSection("💼", "Experience", sections.Experience)}
-        ${buildSection("📋", "Skills", sections.Skills)}
-        ${buildSection("📞", "Contact Info", sections.Contact)}
-        ${buildSection("📝", "Other", sections.Other)}
-      </div>
-    </div>
-  `;
-
-  outputDiv.innerHTML = formattedResume;
+  outputDiv.innerHTML = html;
 }
