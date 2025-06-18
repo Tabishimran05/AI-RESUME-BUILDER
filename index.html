@@ -1,24 +1,27 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>AI Resume Builder</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>💼 AI Resume Builder</h1>
-      <textarea id="userInput" placeholder="Enter your details like name, education, experience..."></textarea>
-      <button onclick="generateResume()">Generate Resume</button>
-      <div id="output"></div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Resume Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-    <footer>
-      Made with ❤️ by Tabish
-    </footer>
+  <!-- Video Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- Content Overlay -->
+  <div class="container">
+    <h1>🧠 AI Resume Builder</h1>
+    <textarea id="userInput" placeholder="Enter your details here..."></textarea>
+    <button onclick="generateResume()">Generate Resume</button>
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
