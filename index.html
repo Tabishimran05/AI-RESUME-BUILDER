@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,18 +8,22 @@
 </head>
 <body>
 
-  <!-- Video Background -->
-  <video autoplay muted loop id="bg-video">
-    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
-  </video>
-
-  <!-- Content Overlay -->
   <div class="container">
+
+    <!-- 🎥 Professional video background behind content box -->
+    <div class="video-wrapper">
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.pixabay.com/vimeo/280134086/Handshake%20-%20280.mp4?width=640&hash=4cc36fd5dd7cd4d255c99271bc3606cda40b80c7" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+
+    <!-- ✏️ Resume Form -->
     <h1>🧠 AI Resume Builder</h1>
     <textarea id="userInput" placeholder="Enter your details here..."></textarea>
     <button onclick="generateResume()">Generate Resume</button>
     <div id="output"></div>
+
   </div>
 
   <script src="script.js"></script>
