@@ -1,4 +1,4 @@
- 
+hu 
    body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to right, #e8f0ff, #ffffff);
@@ -132,16 +132,34 @@ footer {
   object-fit: cover;
   opacity: 0.2; /* Keep resume readable */
 }
-
-/* Container Styling */
+/* Limit video to just the box */
 .container {
   position: relative;
-  z-index: 2;
-  padding: 20px;
-  backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 12px;
-  margin: 40px auto;
+  width: 90%;
   max-width: 800px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Video wrapper inside the box */
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  filter: blur(2px);
 }
