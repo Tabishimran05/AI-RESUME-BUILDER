@@ -121,3 +121,27 @@ footer {
   font-weight: bold;
   padding: 10px;
 }
+/* Background Video */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.2; /* Keep resume readable */
+}
+
+/* Container Styling */
+.container {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  margin: 40px auto;
+  max-width: 800px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
